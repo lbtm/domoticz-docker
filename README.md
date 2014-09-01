@@ -18,7 +18,7 @@ Building
 
 Running
 ===
-docker.io run -p 8080 -d MyDomoticz
+docker.io run -p 8080:8080 -d MyDomoticz
 
 Browsing
 ===
