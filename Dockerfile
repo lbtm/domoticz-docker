@@ -5,22 +5,22 @@
 #
 
 # Pull base image.
-FROM debian
+FROM debian:latest
 MAINTAINER LBTM
 
 # Install Domoticz from sources.
 RUN \
   apt-get update && \
-  apt-get install -y cmake apt-utils build-essential && \
-  apt-get install -y libboost-dev libboost-thread-dev libboost-system-dev libsqlite3-dev subversion curl libcurl4-openssl-dev libusb-dev zlib1g-dev
+  apt-get install -y cmake apt-utils build-essential make gcc g++ libssl-dev git libcurl4-gnutls-dev libusb-dev python3-dev zlib1g-dev && \
+  apt-get clean
 
 # Define working directory.
 WORKDIR /root/
 
 # Getting the source code
 RUN \
-  svn checkout svn://svn.code.sf.net/p/domoticz/code/domoticz && \
-  cd domoticz && cmake CMakeLists.txt && \
+  git clone https://github.com/domoticz/domoticz.git && \
+  cd domoticz && cmake -DCMAKE_BUILD_TYPE=Release CMakeLists.txt -DUSE_OPENSSL_STATIC="NO" && \
   make
 
 # DAEMON path
@@ -32,10 +32,8 @@ RUN \
   chmod +x /etc/init.d/domoticz && \
   update-rc.d domoticz defaults
 
-# Clean up APT when done.
-RUN apt-get clean
-
 # Expose port.
 EXPOSE 8080
 
+# Start Domoticz
 CMD ["/root/domoticz/domoticz", "-www 8080"]
