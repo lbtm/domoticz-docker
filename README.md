@@ -1,25 +1,30 @@
-domoticz-docker
+# domoticz-docker [![Actions Status](https://github.com/lbtm/domoticz-docker/workflows/domoticz-docker-build/badge.svg)](https://github.com/lbtm/domoticz-docker/actions)
 ===============
 
-Dockerfile for domoticz
+Dockerfile for domoticz - Home Automation System
 
-Requirements
-===
- * Docker: https://www.docker.io/gettingstarted/#h_installation
+# Requirement 
+## Install docker >= 18.09.x
+Have docker install on your local machine.  
+Refer to docker installation page :   
+* Fedora : https://docs.docker.com/install/linux/docker-ce/fedora/  
+* Ubuntu : https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-Getting domoticz Docker files
-===
- * From GitHub : git clone https://github.com/lbtm/domoticz-docker.git
+# Get Dockerfile 
+```bash
+git clone https://github.com/lbtm/domoticz-docker.git
+```
 
-Building
-===
- * cd domoticz-docker
- * docker.io build -t MyDomoticz .
+# Build domoticz docker image
+```bash
+cd domoticz-docker
+docker build -t mydomoticz .
+```
 
-Running
-===
-docker.io run -p 8080:8080 -d MyDomoticz
+# Run domoticz
+```bash
+docker run -p 8080:8080 -d mydomoticz
+```
 
-Browsing
-===
+# Browsing
  * Open your favorite browser http://127.0.0.1:8080
