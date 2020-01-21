@@ -16,13 +16,13 @@ RUN \
 
 # Install CMake
 RUN \ 
-  wget https://github.com/Kitware/CMake/releases/download/v3.16.0-rc2/cmake-3.16.0.tar.gz && \
-  tar -xzvf cmake-3.16.0.tar.gz && \
-  rm cmake-3.16.0.tar.gz && cd cmake-3.16.0 && \
+  wget https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2.tar.gz && \
+  tar -xzvf cmake-3.16.2 && \
+  rm cmake-3.16.2.tar.gz && cd cmake-3.16.2 && \
   ./bootstrap && \
   make && \
   make install && \
-  cd .. && rm -Rf cmake-3.16.0
+  cd .. && rm -Rf cmake-3.16.2
 
 # Define working directory.
 WORKDIR /root/
