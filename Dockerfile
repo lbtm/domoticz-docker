@@ -1,18 +1,28 @@
 #
-# Domoticz Dockerfile
-#
-# https://github.com/lbtm/domoticz-docker
+# Domoticz Dockerfile from sources.
 #
 
 # Pull base image.
 FROM debian:latest
 MAINTAINER LBTM
 
-# Install Domoticz from sources.
+# Install packages
 RUN \
   apt-get update && \
   apt-get install -y cmake apt-utils build-essential make gcc g++ libssl-dev git libcurl4-gnutls-dev libusb-dev python3-dev zlib1g-dev && \
+  # Remove any previous CMake installation - Need version >=3.14.0
+  apt remove --purge --auto-remove cmake && \
   apt-get clean
+
+# Install CMake
+RUN \ 
+  wget https://github.com/Kitware/CMake/releases/download/v3.16.0-rc2/cmake-3.16.0.tar.gz && \
+  tar -xzvf cmake-3.16.0.tar.gz && \
+  rm cmake-3.16.0.tar.gz && cd cmake-3.16.0 && \
+  ./bootstrap && \
+  make && \
+  make install && \
+  cd .. && rm -Rf cmake-3.16.0
 
 # Define working directory.
 WORKDIR /root/
