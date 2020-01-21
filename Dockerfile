@@ -14,18 +14,18 @@ RUN \
   apt remove --purge --auto-remove cmake -y && \
   apt-get clean
 
+# Define working directory.
+WORKDIR /root/
+
 # Install CMake
 RUN \ 
   wget https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2.tar.gz && \
-  tar -xzvf cmake-3.16.2 && \
+  tar -xzvf cmake-3.16.2.tar.gz && \
   rm cmake-3.16.2.tar.gz && cd cmake-3.16.2 && \
   ./bootstrap && \
   make && \
   make install && \
   cd .. && rm -Rf cmake-3.16.2
-
-# Define working directory.
-WORKDIR /root/
 
 # Getting the source code
 RUN \
