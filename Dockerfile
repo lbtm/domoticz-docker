@@ -11,7 +11,7 @@ RUN \
   apt-get update && \
   apt-get install -y cmake apt-utils build-essential make gcc g++ libssl-dev git libcurl4-gnutls-dev libusb-dev python3-dev zlib1g-dev && \
   # Remove any previous CMake installation - Need version >=3.14.0
-  apt remove --purge --auto-remove cmake && \
+  apt remove --purge --auto-remove cmake -y && \
   apt-get clean
 
 # Install CMake
